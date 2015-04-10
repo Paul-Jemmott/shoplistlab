@@ -1,0 +1,49 @@
+<%= form_for @todo_item, :html => { :class => "form-horizontal todo_item" } do |f| %>
+
+    <% if @todo_item.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@todo_item.errors.count, "error") %> prohibited this todo_item from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @todo_item.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+    <%= f.label :itemName, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :itemName, :class => 'form-control' %>
+    </div>
+    <%= error_span(@todo_item[:itemName]) %>
+  </div>
+
+
+    <div class="control-group">
+      <%= f.label :position, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :position, :class => 'form-control' %>
+      </div>
+      <%= error_span(@todo_item[:itemName]) %>
+    </div>
+
+
+
+    <div class="control-group">
+      <%= f.label :list_id, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :todo_list_id, :class => 'form-control' %>
+      </div>
+      <%= error_span(@todo_item[:itemName]) %>
+    </div>
+
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            todo_items_path, :class => 'btn btn-default' %>
+
+<% end %>
